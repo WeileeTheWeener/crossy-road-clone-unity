@@ -253,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 335920695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 88.23, y: 1, z: 1}
+  m_LocalScale: {x: 50, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -475,6 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 8257364259219993400}
+  gridIndex: {x: 0, y: 0, z: 0}
 --- !u!54 &813797941
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -588,7 +589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.33682406, y: -0.16317599, z: 0.059391193, w: 0.92541665}
-  m_LocalPosition: {x: 6, y: 24.4, z: -8.76}
+  m_LocalPosition: {x: 6, y: 24.4, z: -28.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -608,11 +609,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  offset: 12
+  offset: 6
   grid: {fileID: 8257364259219993400}
   player: {fileID: 813797935}
-  startOffset: -15
-  deathZone: {fileID: 335920698}
+  deathZoneObject: {fileID: 335920695}
+  deathZoneObjectOffset: {x: -6, y: -21, z: -12}
 --- !u!1 &1105944264
 GameObject:
   m_ObjectHideFlags: 0

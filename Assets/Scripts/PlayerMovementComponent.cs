@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovementComponent : MonoBehaviour
 {
     [SerializeField] private Grid grid;
-    private Vector3Int gridIndex;
+    [SerializeField] private Vector3Int gridIndex;
 
     // Start is called before the first frame update
     void Start()

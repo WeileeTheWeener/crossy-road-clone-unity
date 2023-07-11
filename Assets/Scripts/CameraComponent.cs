@@ -4,49 +4,29 @@ using UnityEngine;
 
 public class CameraComponent : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private int offset;
+    [SerializeField] private int moveSpeed;
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject player;
-    [SerializeField] private float startOffset;
+    [SerializeField] private GameObject deathZoneObject;
+    [SerializeField] private Vector3 deathZoneObjectOffset;
 
-    #if UNITY_EDITOR
-        public Transform deathZone;
-    #endif
-    private void Start()
-    {
-        transform.position = new Vector3(transform.position.x,transform.position.y,player.transform.position.z+startOffset);
-    }
     // Update is called once per frame
     void Update()
     {
         Move();
-        DeathZoneRaycast();
+        DeathZone();
     }
     private void Move()
     {
         transform.position += new Vector3(0, 0, moveSpeed * Time.deltaTime);
     }
-    private void DeathZoneRaycast()
+    private void DeathZone()
     {
-        Ray ray = new Ray();
-        ray.origin = transform.position;
-        ray.direction = transform.forward;
-        RaycastHit hit;
+        deathZoneObject.transform.position = transform.position + deathZoneObjectOffset;
 
-        if(Physics.Raycast(ray,out hit))
+        if(deathZoneObject.transform.position.z > player.transform.position.z)
         {
-            Vector3Int hitPointCell = grid.WorldToCell(hit.point);
-            hitPointCell.y -= offset;
-
-            if (grid.WorldToCell(player.transform.position).y < hitPointCell.y)
-            {
-                Debug.Log("Player is dead");
-            }
-
-        #if UNITY_EDITOR
-            deathZone.position = grid.CellToWorld(hitPointCell);
-        #endif
+            Debug.Log("player is dead");
         }
 
     }

@@ -5,12 +5,12 @@ using UnityEngine;
 public class CarComponent : MonoBehaviour
 {
     public Grid grid;
-    private Vector3Int gridIndex;
-    public float movementRate;
-    public float timeLeftToMove;
-    public bool canMove;
-    public GameObject roadCheckRayObject;
-    public GameObject player;
+    [SerializeField] private float movementRate;
+    [SerializeField] private float timeLeftToMove;
+    [SerializeField] private bool canMove;
+    [SerializeField] private GameObject roadCheckRayObject;
+    [SerializeField] private GameObject player;
+    private Vector3Int gridIndex; 
     private Vector3 startPosition;
     private Collider collider;
 
@@ -31,8 +31,7 @@ public class CarComponent : MonoBehaviour
     {
         Movement();
         CheckIfCanMove();
-        
-      
+   
     }
     void Movement()
     {
