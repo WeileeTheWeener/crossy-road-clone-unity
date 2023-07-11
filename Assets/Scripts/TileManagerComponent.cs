@@ -9,12 +9,12 @@ public class TileManagerComponent : MonoBehaviour
     public UnityEvent onEndReached;
     public TilesetComponent lastSpawnedTile;
     public Grid grid;
+    public GameObject debug;
 
     // Start is called before the first frame update
     void Start()
     {
-        onEndReached.AddListener(SpawnTiles);
-        
+        onEndReached.AddListener(SpawnTiles);  
     }
     // Update is called once per frame
     void Update()
@@ -23,10 +23,7 @@ public class TileManagerComponent : MonoBehaviour
        {
             SpawnTiles();
        }
-
-    
     }
-
     void SpawnTiles()
     {
         int tileToSpawn = Random.Range(0, tileList.Count);
@@ -36,21 +33,13 @@ public class TileManagerComponent : MonoBehaviour
 
         if (lastSpawnedTile != null)
         {
-            Vector3Int lastSpawnedTilesLastCell = grid.WorldToCell(lastSpawnedTile.LastTile.transform.position);
-            Vector3Int tilesetCenterCell = grid.WorldToCell(tilesetComponent.transform.position);
-
-            //tile.transform.position = grid.CellToWorld(new Vector3Int(0,lastSpawnedTilesLastCell.y,0)) + tilesetComponent.Size / 2f * grid.cellSize.y * Vector3.forward;
-            //tile.transform.position = grid.CellToWorld(new Vector3Int(0, lastSpawnedTilesLastCell.y, 0)) + grid.CellToWorld(tilesetCenterCell);
-            tile.transform.position = grid.CellToWorld(new Vector3Int(0, lastSpawnedTilesLastCell.y, 0))+ (float)grid.cellSize.z/2f * Vector3.forward;
-            tile.transform.position += (float)tilesetComponent.Size / 2f * Vector3.forward * grid.cellSize.z;
- 
+            tilesetComponent.Index = lastSpawnedTile.Index + lastSpawnedTile.Size;
         }
         else
         {
-            tile.transform.position = grid.CellToWorld(new Vector3Int(0,0,0));
+            tilesetComponent.Index = 0;
         }
-        
+        tile.transform.position = grid.CellToWorld(new Vector3Int(0, tilesetComponent.Index, 0)) + (float)tilesetComponent.Size / 2f * grid.cellSize.y * Vector3.forward;
         lastSpawnedTile = tilesetComponent;
-
     }
 }

@@ -8,12 +8,15 @@ public class CameraComponent : MonoBehaviour
     [SerializeField] private int offset;
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject player;
-
+    [SerializeField] private float startOffset;
 
     #if UNITY_EDITOR
         public Transform deathZone;
     #endif
-
+    private void Start()
+    {
+        transform.position = new Vector3(transform.position.x,transform.position.y,player.transform.position.z+startOffset);
+    }
     // Update is called once per frame
     void Update()
     {

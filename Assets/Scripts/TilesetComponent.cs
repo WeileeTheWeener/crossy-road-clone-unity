@@ -13,6 +13,7 @@ public class TilesetComponent : MonoBehaviour
 
     public int Size { get => size; set => size = value; }
     public GameObject LastTile { get => lastTile; set => lastTile = value; }
+    public int Index { get => index; set => index = value; }
 
     private void Start()
     {
