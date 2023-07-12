@@ -10,11 +10,14 @@ public class CameraComponent : MonoBehaviour
     [SerializeField] private GameObject deathZoneObject;
     [SerializeField] private Vector3 deathZoneObjectOffset;
 
+
+
     // Update is called once per frame
     void Update()
     {
         Move();
         DeathZone();
+
     }
     private void Move()
     {
@@ -30,5 +33,6 @@ public class CameraComponent : MonoBehaviour
         }
 
     }
+
 }
 

@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  movementRate: 0.3
+  movementRate: 0.5
   timeLeftToMove: 0
   canMove: 0
   roadCheckRayObject: {fileID: 4679209513243535313}

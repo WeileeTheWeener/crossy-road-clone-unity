@@ -10,21 +10,27 @@ public class TileManagerComponent : MonoBehaviour
     public TilesetComponent lastSpawnedTile;
     public Grid grid;
     public GameObject debug;
+    public GameObject tilesetCheckerObject;
+    [SerializeField] private Vector3 tilesetCheckerObjectOffset;
 
     // Start is called before the first frame update
     void Start()
     {
-        onEndReached.AddListener(SpawnTiles);  
+        onEndReached.AddListener(SpawnTiles);
+        SpawnTiles();
     }
     // Update is called once per frame
     void Update()
     {
-       if(Input.GetMouseButtonDown(0))
+       UpdateTilesetCheckerObject();
+
+       /*if (Input.GetMouseButtonDown(0))
        {
             SpawnTiles();
-       }
+       }*/
+        
     }
-    void SpawnTiles()
+    public void SpawnTiles()
     {
         int tileToSpawn = Random.Range(0, tileList.Count);
         GameObject tile = GameObject.Instantiate(tileList[tileToSpawn]);
@@ -42,4 +48,9 @@ public class TileManagerComponent : MonoBehaviour
         tile.transform.position = grid.CellToWorld(new Vector3Int(0, tilesetComponent.Index, 0)) + (float)tilesetComponent.Size / 2f * grid.cellSize.y * Vector3.forward;
         lastSpawnedTile = tilesetComponent;
     }
+    private void UpdateTilesetCheckerObject()
+    {
+        tilesetCheckerObject.transform.position = Camera.main.transform.position + tilesetCheckerObjectOffset;
+    }
+
 }
