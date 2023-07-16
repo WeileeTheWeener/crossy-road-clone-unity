@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovementComponent : MonoBehaviour
 {
     [SerializeField] private Grid grid;
     [SerializeField] private Vector3Int gridIndex;
+    public UnityEvent onMoveForward;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class PlayerMovementComponent : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             gridIndex.y++;
+            onMoveForward.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.S))
         {

@@ -9,7 +9,6 @@ public class GameFlowComponent : MonoBehaviour
     public GameObject player;
     public Grid grid;
 
-
     private void Awake()
     {
         if (instance == null)
@@ -17,7 +16,6 @@ public class GameFlowComponent : MonoBehaviour
             instance = this;
         }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -27,8 +25,7 @@ public class GameFlowComponent : MonoBehaviour
             {
                 Debug.Log("dead");
             }
-        }
-        
+        }  
     }
     public static void AddDeathZoneVehicleComponent(DeathZoneVehicleComponent deathZoneVehicleComponent)
     {
