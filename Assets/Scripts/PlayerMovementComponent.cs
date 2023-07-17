@@ -31,22 +31,21 @@ public class PlayerMovementComponent : MonoBehaviour
         
     }
     void GridMovement()
-    {
-
-        if (Input.GetKeyDown(KeyCode.D) && canMoveRight)
+    {      
+        if (Input.GetKeyUp(KeyCode.D) && canMoveRight)
         {
             gridIndex.x++;
         }
-        if (Input.GetKeyDown(KeyCode.A) && canMoveLeft)
+        if (Input.GetKeyUp(KeyCode.A) && canMoveLeft)
         {
             gridIndex.x--;
         }  
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.W))
         {
             gridIndex.y++;
             onMoveForward.Invoke();
         }
-        if (Input.GetKeyDown(KeyCode.S) && canMoveBack)
+        if (Input.GetKeyUp(KeyCode.S) && canMoveBack)
         {
             gridIndex.y--;
         }
