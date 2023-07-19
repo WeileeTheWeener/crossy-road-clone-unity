@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerMovementComponent : MonoBehaviour
 {
     [SerializeField] private Grid grid;
-    [SerializeField] private Vector3Int gridIndex;
+    public Vector3Int gridIndex;
     public UnityEvent onMoveForward;
     Vector3Int tileLeftOfPlayer;
     Vector3Int tileRightOfPlayer;
@@ -15,12 +15,14 @@ public class PlayerMovementComponent : MonoBehaviour
     [SerializeField] bool canMoveLeft;
     [SerializeField] bool canMoveRight;
     [SerializeField] bool canMoveBack;
+    [SerializeField] Vector3 startingPosition;
 
 
     // Start is called before the first frame update
     void Start()
     {
         gridIndex = grid.WorldToCell(gameObject.transform.position);
+        transform.position = grid.CellToWorld(gridIndex);
     }
 
     // Update is called once per frame
@@ -34,23 +36,23 @@ public class PlayerMovementComponent : MonoBehaviour
     {      
         if (Input.GetKeyUp(KeyCode.D) && canMoveRight)
         {
-            gridIndex.x++;
+            gridIndex.x++;         
         }
         if (Input.GetKeyUp(KeyCode.A) && canMoveLeft)
         {
-            gridIndex.x--;
+            gridIndex.x--;    
         }  
         if (Input.GetKeyUp(KeyCode.W))
-        {
+        {           
             gridIndex.y++;
             onMoveForward.Invoke();
         }
         if (Input.GetKeyUp(KeyCode.S) && canMoveBack)
         {
-            gridIndex.y--;
+            gridIndex.y--;    
         }
-
         transform.position = grid.CellToWorld(gridIndex);
+
     }
     void CheckIfICanMove()
     {
@@ -97,6 +99,9 @@ public class PlayerMovementComponent : MonoBehaviour
             //Debug.Log("Right: "+hitRight.transform.name);
         }
         else canMoveBack = false;
-
+    }
+    public void ResetPlayerPosition()
+    {
+        gridIndex = grid.WorldToCell(startingPosition);
     }
 }

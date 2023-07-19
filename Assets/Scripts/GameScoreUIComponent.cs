@@ -9,6 +9,7 @@ public class GameScoreUIComponent : MonoBehaviour
     private void Start()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
+        UpdateGameScoreUI();
     }
     public void UpdateGameScoreUI()
     {
