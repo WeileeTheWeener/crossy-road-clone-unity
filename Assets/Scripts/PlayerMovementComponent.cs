@@ -103,5 +103,6 @@ public class PlayerMovementComponent : MonoBehaviour
     public void ResetPlayerPosition()
     {
         gridIndex = grid.WorldToCell(startingPosition);
+        transform.position = grid.CellToWorld(gridIndex);
     }
 }

@@ -12,6 +12,7 @@ public class TileManagerComponent : MonoBehaviour
     public GameObject debug;
     public GameObject tilesetCheckerObject;
     [SerializeField] private Vector3 tilesetCheckerObjectOffset;
+    [SerializeField] private GameObject tiles;
 
     // Start is called before the first frame update
     void Start()

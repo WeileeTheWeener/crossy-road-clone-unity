@@ -207,7 +207,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &58136744
 MonoBehaviour:
@@ -309,6 +309,7 @@ MonoBehaviour:
   debug: {fileID: 1105944264}
   tilesetCheckerObject: {fileID: 58136740}
   tilesetCheckerObjectOffset: {x: -6, y: -21, z: 62}
+  tiles: {fileID: 0}
 --- !u!4 &68105854
 Transform:
   m_ObjectHideFlags: 0
@@ -423,7 +424,7 @@ RectTransform:
   - {fileID: 803542714}
   - {fileID: 1897662095}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1267,8 +1268,9 @@ GameObject:
   - component: {fileID: 813797938}
   - component: {fileID: 813797937}
   - component: {fileID: 813797936}
-  - component: {fileID: 813797940}
   - component: {fileID: 813797941}
+  - component: {fileID: 813797940}
+  - component: {fileID: 813797942}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1448,6 +1450,46 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &813797942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813797935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43539409b0a09d41bbdc4f5479baec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 0
+  onPlayerDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1236896785}
+        m_TargetAssemblyTypeName: GameFlowComponent, Assembly-CSharp
+        m_MethodName: OpenGameOverScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1100675346}
+        m_TargetAssemblyTypeName: GameScoreComponent, Assembly-CSharp
+        m_MethodName: UpdateHighScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,33 +1600,7 @@ MonoBehaviour:
   player: {fileID: 813797935}
   deathZoneObject: {fileID: 335920695}
   deathZoneObjectOffset: {x: -6, y: -21, z: -12}
-  onPlayerDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1236896785}
-        m_TargetAssemblyTypeName: GameFlowComponent, Assembly-CSharp
-        m_MethodName: OpenGameOverScreen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1100675346}
-        m_TargetAssemblyTypeName: GameScoreComponent, Assembly-CSharp
-        m_MethodName: UpdateHighScore
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  playerDeathComponent: {fileID: 0}
 --- !u!1 &1048584209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,7 +1784,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1105944264
 GameObject:
@@ -1907,34 +1923,8 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1897662094}
   deathZones: []
   player: {fileID: 813797935}
+  playerDeathComponent: {fileID: 0}
   grid: {fileID: 8257364259219993400}
-  onPlayerDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1236896785}
-        m_TargetAssemblyTypeName: GameFlowComponent, Assembly-CSharp
-        m_MethodName: OpenGameOverScreen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1100675346}
-        m_TargetAssemblyTypeName: GameScoreComponent, Assembly-CSharp
-        m_MethodName: UpdateHighScore
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &1236896786
 Transform:
   m_ObjectHideFlags: 0
@@ -1948,7 +1938,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1269885607
 PrefabInstance:
@@ -1960,7 +1950,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4110382504436584302, guid: 117fc32ffabbd8f45bf391a65c9c9a50, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4110382504436584302, guid: 117fc32ffabbd8f45bf391a65c9c9a50, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1980,15 +1970,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4110382504436584302, guid: 117fc32ffabbd8f45bf391a65c9c9a50, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4110382504436584302, guid: 117fc32ffabbd8f45bf391a65c9c9a50, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4110382504436584302, guid: 117fc32ffabbd8f45bf391a65c9c9a50, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4110382504436584302, guid: 117fc32ffabbd8f45bf391a65c9c9a50, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2077,7 +2067,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1897662094
 GameObject:

@@ -10,10 +10,12 @@ public class CameraComponent : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject deathZoneObject;
     [SerializeField] private Vector3 deathZoneObjectOffset;
-    [SerializeField] private UnityEvent onPlayerDeath;
+    [SerializeField] private PlayerDeathComponent playerDeathComponent;
     private Vector3 startingPosition;
+
     private void Start()
     {
+        playerDeathComponent = player.GetComponent<PlayerDeathComponent>();
         startingPosition = transform.position;
     }
     // Update is called once per frame
@@ -33,8 +35,11 @@ public class CameraComponent : MonoBehaviour
 
         if(deathZoneObject.transform.position.z > player.transform.position.z)
         {
-            onPlayerDeath?.Invoke();
-            Debug.Log("player is dead");
+            //todo make a player death component invoke this in there if player is alive(done)
+            //onPlayerDeath?.Invoke();
+            playerDeathComponent.HandleDeath();
+            playerDeathComponent.isAlive = false;
+            Debug.Log("player is dead(out of zone)");
         }
 
     }

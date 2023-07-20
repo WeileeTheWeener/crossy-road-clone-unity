@@ -9,8 +9,8 @@ public class GameFlowComponent : MonoBehaviour
     public static GameFlowComponent instance; 
     public List<DeathZoneVehicleComponent> deathZones;
     public GameObject player;
+    public PlayerDeathComponent playerDeathComponent;
     public Grid grid;
-    [SerializeField] private UnityEvent onPlayerDeath;
     
 
     private void Awake()
@@ -19,6 +19,7 @@ public class GameFlowComponent : MonoBehaviour
         {
             instance = this;
         }
+        playerDeathComponent = player.GetComponent<PlayerDeathComponent>();
     }
     // Update is called once per frame
     void Update()
@@ -27,8 +28,11 @@ public class GameFlowComponent : MonoBehaviour
         {
             if (deathZone.CheckIfInDeathZone(grid.WorldToCell(player.transform.position),grid))
             {
-                Debug.Log("dead");
-                onPlayerDeath?.Invoke();
+                //onPlayerDeath?.Invoke();
+                Debug.Log("player is dead(collision)");           
+                playerDeathComponent.HandleDeath();
+                playerDeathComponent.isAlive = false;
+
             }
         }  
     }
