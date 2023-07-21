@@ -1490,6 +1490,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1100675348}
+        m_TargetAssemblyTypeName: SaveScoreComponent, Assembly-CSharp
+        m_MethodName: SaveHighScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,6 +1758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1100675347}
   - component: {fileID: 1100675346}
+  - component: {fileID: 1100675348}
   m_Layer: 0
   m_Name: GameScore
   m_TagString: Untagged
@@ -1771,6 +1784,7 @@ MonoBehaviour:
   grid: {fileID: 8257364259219993400}
   playersUpmostTouchedGrid: 0
   playersGrid: 0
+  scoreScriptableObject: {fileID: 11400000, guid: 4aae2e95929c71b469cb5f82ba07f55c, type: 2}
 --- !u!4 &1100675347
 Transform:
   m_ObjectHideFlags: 0
@@ -1786,6 +1800,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1100675348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100675345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b524e172de795714db2e19517ca61043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoreScriptableObject: {fileID: 11400000, guid: 4aae2e95929c71b469cb5f82ba07f55c, type: 2}
+  gameScoreComponent: {fileID: 1100675346}
 --- !u!1 &1105944264
 GameObject:
   m_ObjectHideFlags: 0
