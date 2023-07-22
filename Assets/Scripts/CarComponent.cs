@@ -1,37 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarComponent : MonoBehaviour
 {
     public Grid grid;
+    public GameObject tileManager;
     [SerializeField] private float movementRate;
     [SerializeField] private float timeLeftToMove;
     [SerializeField] private bool canMove;
     [SerializeField] private GameObject roadCheckRayObject;
     [SerializeField] private GameObject player;
-    private Vector3Int gridIndex; 
-    private Vector3 startPosition;
-    private Collider collider;
+    public Vector3Int gridIndex;
+    [SerializeField] Vector3 startWorldPosition;
+    public Vector3Int carStartGridPositionOffset;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        gridIndex = grid.WorldToCell(gameObject.transform.position);
-        transform.position = grid.CellToWorld(gridIndex);
-        collider = gameObject.GetComponent<Collider>();
-        startPosition = transform.position;
+        startWorldPosition = transform.position;
         timeLeftToMove = movementRate;
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        Movement(); 
+    }
+    private void FixedUpdate()
+    {
         CheckIfCanMove();
-   
     }
     void Movement()
     {
@@ -42,15 +39,14 @@ public class CarComponent : MonoBehaviour
         {
             timeLeftToMove = movementRate;
             gridIndex.x++;
-            transform.position = grid.CellToWorld(gridIndex);
         }
         //loop through if next tile has no road
-        else if(!canMove)
+        else if(timeLeftToMove == 0 && !canMove)
         {
-            gridIndex.x = grid.WorldToCell(startPosition).x;
-            transform.position = grid.CellToWorld(gridIndex);
+            gridIndex.x = grid.WorldToCell(startWorldPosition).x;
+            timeLeftToMove = movementRate;
         }
-        
+        transform.position = grid.CellToWorld(gridIndex);
     }
     void CheckIfCanMove()
     {

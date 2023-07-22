@@ -11,8 +11,8 @@ public class TileManagerComponent : MonoBehaviour
     public Grid grid;
     public GameObject debug;
     public GameObject tilesetCheckerObject;
+    public GameObject cameraDeathZone;
     [SerializeField] private Vector3 tilesetCheckerObjectOffset;
-    [SerializeField] private GameObject tiles;
 
     // Start is called before the first frame update
     void Start()
@@ -23,35 +23,45 @@ public class TileManagerComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       UpdateTilesetCheckerObject();
-
-       /*if (Input.GetMouseButtonDown(0))
-       {
-            SpawnTiles();
-       }*/
-        
+       UpdateTilesetCheckerObjectPosition();
     }
     public void SpawnTiles()
     {
-        int tileToSpawn = Random.Range(0, tileList.Count);
-        GameObject tile = GameObject.Instantiate(tileList[tileToSpawn]);
-        TilesetComponent tilesetComponent = tile.GetComponent<TilesetComponent>();
-        tile.GetComponentInChildren<CarComponent>().grid = grid;
+        GameObject tile = ObjectPool.instance.GetPooledObject();
 
-        if (lastSpawnedTile != null)
+        if(tile != null) 
         {
-            tilesetComponent.Index = lastSpawnedTile.Index + lastSpawnedTile.Size;
+            tile.SetActive(true);
+            TilesetComponent tilesetComponent = tile.GetComponent<TilesetComponent>();
+            tile.GetComponentInChildren<CarComponent>().grid = grid;
+            tilesetComponent.cameraDeathZone = cameraDeathZone;
+
+            if (lastSpawnedTile != null)
+            {
+                tilesetComponent.Index = lastSpawnedTile.Index + lastSpawnedTile.Size;
+            }
+            else
+            {
+                tilesetComponent.Index = 0;
+            }
+            
+            tile.transform.position = grid.CellToWorld(new Vector3Int(0, tilesetComponent.Index, 0)) + (float)tilesetComponent.Size / 2f * grid.cellSize.y * Vector3.forward;
+            lastSpawnedTile = tilesetComponent;
+
+            //initialize the car position
+            tilesetComponent.gridIndex = grid.WorldToCell(tile.transform.position);
+            tile.GetComponentInChildren<CarComponent>().gridIndex = new Vector3Int(tilesetComponent.gridIndex.x+
+                tile.GetComponentInChildren<CarComponent>().carStartGridPositionOffset.x,
+            tilesetComponent.gridIndex.y + tile.GetComponentInChildren<CarComponent>().carStartGridPositionOffset.y,
+            tilesetComponent.gridIndex.z + tile.GetComponentInChildren<CarComponent>().carStartGridPositionOffset.z);
+
+            //Vector3Int debug = grid.WorldToCell(tile.transform.position);
         }
-        else
-        {
-            tilesetComponent.Index = 0;
-        }
-        tile.transform.position = grid.CellToWorld(new Vector3Int(0, tilesetComponent.Index, 0)) + (float)tilesetComponent.Size / 2f * grid.cellSize.y * Vector3.forward;
-        lastSpawnedTile = tilesetComponent;
     }
-    private void UpdateTilesetCheckerObject()
+    private void UpdateTilesetCheckerObjectPosition()
     {
         tilesetCheckerObject.transform.position = Camera.main.transform.position + tilesetCheckerObjectOffset;
     }
+
 
 }

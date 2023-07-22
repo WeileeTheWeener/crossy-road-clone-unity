@@ -4037,11 +4037,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
+  tileManager: {fileID: 0}
   movementRate: 0.5
   timeLeftToMove: 0
   canMove: 0
   roadCheckRayObject: {fileID: 4805111076988076986}
   player: {fileID: 0}
+  gridIndex: {x: 0, y: 0, z: 0}
+  startWorldPosition: {x: 0, y: 0, z: 0}
+  carStartGridPositionOffset: {x: -3, y: 2, z: 4}
 --- !u!114 &7319875717562822771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5669,8 +5673,9 @@ MonoBehaviour:
   size: 14
   index: 0
   lastTile: {fileID: 5064747310574933869}
+  cameraDeathZone: {fileID: 0}
   grid: {fileID: 0}
-  gridIndex: {x: 0, y: 0, z: 0}
+  gridIndex: {x: 0, y: 0, z: 4}
 --- !u!1 &8797322624673410162
 GameObject:
   m_ObjectHideFlags: 0
