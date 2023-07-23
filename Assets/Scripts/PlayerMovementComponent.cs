@@ -24,7 +24,6 @@ public class PlayerMovementComponent : MonoBehaviour
         gridIndex = grid.WorldToCell(gameObject.transform.position);
         transform.position = grid.CellToWorld(gridIndex);
     }
-
     // Update is called once per frame
     void Update()
     {

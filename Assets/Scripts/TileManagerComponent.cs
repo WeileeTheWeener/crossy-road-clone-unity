@@ -1,29 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 public class TileManagerComponent : MonoBehaviour
 {
-    public List<GameObject> tileList;
-    public UnityEvent onEndReached;
     public TilesetComponent lastSpawnedTile;
     public Grid grid;
     public GameObject debug;
     public GameObject tilesetCheckerObject;
     public GameObject cameraDeathZone;
-    [SerializeField] private Vector3 tilesetCheckerObjectOffset;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        onEndReached.AddListener(SpawnTiles);
+        UnityEngine.Debug.Log("tile spawned (tilemanager Start func)");
         SpawnTiles();
+    }
+    private void OnEnable()
+    {
+       
     }
     // Update is called once per frame
     void Update()
     {
-       UpdateTilesetCheckerObjectPosition();
+
     }
     public void SpawnTiles()
     {
@@ -58,10 +58,7 @@ public class TileManagerComponent : MonoBehaviour
             //Vector3Int debug = grid.WorldToCell(tile.transform.position);
         }
     }
-    private void UpdateTilesetCheckerObjectPosition()
-    {
-        tilesetCheckerObject.transform.position = Camera.main.transform.position + tilesetCheckerObjectOffset;
-    }
+
 
 
 }

@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathZoneVehicleComponent : MonoBehaviour
 {
     private Collider collider;
+    [SerializeField] Grid grid;
+    public GameObject player;
+    public PlayerDeathComponent playerDeathComponent;
 
     private void OnDisable()
     {
@@ -13,8 +14,22 @@ public class DeathZoneVehicleComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         GameFlowComponent.AddDeathZoneVehicleComponent(this);
         collider = gameObject.GetComponent<Collider>();
+        grid = gameObject.GetComponent<CarComponent>().grid;
+        playerDeathComponent = player.GetComponent<PlayerDeathComponent>();
+
+    }
+    private void Update()
+    {
+        if (CheckIfInDeathZone(grid.WorldToCell(player.transform.position), grid))
+        {
+            Debug.Log("player is dead(collision)");
+            playerDeathComponent.HandleDeath();
+            playerDeathComponent.isAlive = false;
+
+        }
     }
     public bool CheckIfInDeathZone(Vector3Int playerIndex,Grid grid)
     {

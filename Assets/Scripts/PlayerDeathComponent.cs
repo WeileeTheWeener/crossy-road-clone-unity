@@ -10,12 +10,18 @@ public class PlayerDeathComponent : MonoBehaviour
     {
         isAlive = true;
     }
+    private void OnDisable()
+    {
+        isAlive = false;
+    }
 
     public void HandleDeath()
     {
-        if(isAlive)
-        {
+  
+       if (!isAlive)
+       {
             onPlayerDeath.Invoke();
-        }
+            Debug.Log("on player death invoked");
+       }
     }
 }

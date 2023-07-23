@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarComponent : MonoBehaviour
@@ -9,11 +8,9 @@ public class CarComponent : MonoBehaviour
     [SerializeField] private float timeLeftToMove;
     [SerializeField] private bool canMove;
     [SerializeField] private GameObject roadCheckRayObject;
-    [SerializeField] private GameObject player;
     public Vector3Int gridIndex;
     [SerializeField] Vector3 startWorldPosition;
     public Vector3Int carStartGridPositionOffset;
-
 
     private void OnEnable()
     {

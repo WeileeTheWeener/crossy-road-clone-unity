@@ -1,16 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool instance;
+    [SerializeField] TileManagerComponent tileManager;
     [SerializeField] int poolAmount;
     [SerializeField] private List<GameObject> tilePrefabs;
-    [SerializeField] List<GameObject> pooledObjects = new List<GameObject>();
-    [SerializeField] List<GameObject> pooledUnactiveTiles = new List<GameObject>();
+    public List<GameObject> pooledObjects = new List<GameObject>();
+    
 
 
     private void Awake()
@@ -19,12 +18,42 @@ public class ObjectPool : MonoBehaviour
         {
             instance = this;
         }
+
+        CreateObjectPool();
     }
 
     // Start is called before the first frame update
     void Start()
-    {   
-        for(int x = 0; x<tilePrefabs.Count;x++)
+    {
+       
+    }
+    private void OnEnable()
+    {
+        //if the pool is destroyed create
+        if(pooledObjects.Count == 0)
+        {
+            CreateObjectPool();
+            tileManager.SpawnTiles();
+        }
+    }
+    private void OnDisable()
+    {
+        DestroyThePool();
+    }
+    public void DestroyThePool()
+    {
+        foreach (GameObject obj in pooledObjects) 
+        {
+            Destroy(obj);
+            
+        }
+        pooledObjects.Clear();
+
+
+    }
+    public void CreateObjectPool()
+    {
+        for (int x = 0; x < tilePrefabs.Count; x++)
         {
             for (int i = 0; i < poolAmount; i++)
             {
@@ -33,7 +62,6 @@ public class ObjectPool : MonoBehaviour
                 pooledObjects.Add(obj);
             }
         }
-       
     }
     public GameObject GetPooledObject()
     {

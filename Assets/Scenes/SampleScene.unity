@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileManager: {fileID: 68105853}
+  startPos: {x: 0, y: 0, z: 0}
+  tilesetCheckerObjectOffset: {x: -6, y: -21, z: 62}
 --- !u!54 &58136745
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -299,17 +301,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5944edc161176c04488f6af4284dc049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileList:
-  - {fileID: 7302317698008139176, guid: a621c71a643c93c439a8d674d115c15b, type: 3}
-  onEndReached:
-    m_PersistentCalls:
-      m_Calls: []
   lastSpawnedTile: {fileID: 0}
   grid: {fileID: 8257364259219993400}
   debug: {fileID: 1105944264}
   tilesetCheckerObject: {fileID: 58136740}
   cameraDeathZone: {fileID: 335920695}
-  tilesetCheckerObjectOffset: {x: -6, y: -21, z: 62}
 --- !u!4 &68105854
 Transform:
   m_ObjectHideFlags: 0
@@ -621,6 +617,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1728895247}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 58136744}
+        m_TargetAssemblyTypeName: TilesetTriggerComponent, Assembly-CSharp
+        m_MethodName: SetPositionToStartPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &266373716
 MonoBehaviour:
@@ -1502,6 +1522,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1728895247}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,7 +1688,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048584209
 GameObject:
@@ -2183,12 +2215,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd4eff7ba2e1f5439813cccaea50f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileManager: {fileID: 68105853}
   poolAmount: 3
   tilePrefabs:
   - {fileID: 7302317698008139176, guid: a621c71a643c93c439a8d674d115c15b, type: 3}
   - {fileID: 8723203418145784314, guid: 429ca7c39b106b34bab3a663b5a9f5cd, type: 3}
   pooledObjects: []
-  pooledUnactiveTiles: []
 --- !u!4 &1728895249
 Transform:
   m_ObjectHideFlags: 0
@@ -2202,7 +2234,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1897662094
 GameObject:
