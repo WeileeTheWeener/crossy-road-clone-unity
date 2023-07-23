@@ -13,6 +13,6 @@ public class GameScoreUIComponent : MonoBehaviour
     }
     public void UpdateGameScoreUI()
     {
-        scoreText.text = String.Format("Score: {0}", gameScoreComponent.playerScore.ToString());
+        scoreText.text = String.Format("Score: {0}", gameScoreComponent.PlayerScore.ToString());
     }
 }

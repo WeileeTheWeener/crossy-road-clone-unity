@@ -3,37 +3,25 @@ using UnityEngine;
 
 public class TileManagerComponent : MonoBehaviour
 {
-    public TilesetComponent lastSpawnedTile;
-    public Grid grid;
-    public GameObject debug;
-    public GameObject tilesetCheckerObject;
-    public GameObject cameraDeathZone;
+    [SerializeField] TilesetComponent lastSpawnedTile;
+    [SerializeField] GameObject cameraDeathZone;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        UnityEngine.Debug.Log("tile spawned (tilemanager Start func)");
+        Debug.Log("tile spawned (tilemanager Start func)");
         SpawnTiles();
-    }
-    private void OnEnable()
-    {
-       
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
     public void SpawnTiles()
     {
         GameObject tile = ObjectPool.instance.GetPooledObject();
+        Grid grid = GridComponent.GetGrid();
 
-        if(tile != null) 
+        if (tile != null) 
         {
             tile.SetActive(true);
             TilesetComponent tilesetComponent = tile.GetComponent<TilesetComponent>();
-            tile.GetComponentInChildren<CarComponent>().grid = grid;
             tilesetComponent.cameraDeathZone = cameraDeathZone;
 
             if (lastSpawnedTile != null)

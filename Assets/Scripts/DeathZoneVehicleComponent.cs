@@ -3,7 +3,7 @@ using UnityEngine;
 public class DeathZoneVehicleComponent : MonoBehaviour
 {
     private Collider collider;
-    [SerializeField] Grid grid;
+    private Grid grid;
     public GameObject player;
     public PlayerDeathComponent playerDeathComponent;
 
@@ -17,7 +17,7 @@ public class DeathZoneVehicleComponent : MonoBehaviour
         player = GameObject.Find("Player");
         GameFlowComponent.AddDeathZoneVehicleComponent(this);
         collider = gameObject.GetComponent<Collider>();
-        grid = gameObject.GetComponent<CarComponent>().grid;
+        grid = GridComponent.GetGrid();
         playerDeathComponent = player.GetComponent<PlayerDeathComponent>();
 
     }

@@ -9,9 +9,7 @@ public class GameFlowComponent : MonoBehaviour
     public List<DeathZoneVehicleComponent> deathZones;
     public GameObject player;
     public PlayerDeathComponent playerDeathComponent;
-    public Grid grid;
     
-
     private void Awake()
     {
         if (instance == null)

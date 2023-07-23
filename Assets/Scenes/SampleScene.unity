@@ -302,9 +302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastSpawnedTile: {fileID: 0}
-  grid: {fileID: 8257364259219993400}
-  debug: {fileID: 1105944264}
-  tilesetCheckerObject: {fileID: 58136740}
   cameraDeathZone: {fileID: 335920695}
 --- !u!4 &68105854
 Transform:
@@ -1398,8 +1395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d409e9681ce6d4893183649853a3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 8257364259219993400}
-  gridIndex: {x: 0, y: 0, z: 0}
   onMoveForward:
     m_PersistentCalls:
       m_Calls:
@@ -1640,7 +1635,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  grid: {fileID: 8257364259219993400}
   player: {fileID: 813797935}
   deathZoneObject: {fileID: 335920695}
   deathZoneObjectOffset: {x: -6, y: -21, z: -12}
@@ -1856,9 +1850,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 813797935}
-  playerScore: 0
-  highScore: 0
-  grid: {fileID: 8257364259219993400}
   playersUpmostTouchedGrid: 0
   playersGrid: 0
 --- !u!4 &1100675347
@@ -2027,7 +2018,6 @@ MonoBehaviour:
   deathZones: []
   player: {fileID: 813797935}
   playerDeathComponent: {fileID: 0}
-  grid: {fileID: 8257364259219993400}
 --- !u!4 &1236896786
 Transform:
   m_ObjectHideFlags: 0
@@ -2356,6 +2346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3119979295693832514}
   - component: {fileID: 8257364259219993400}
+  - component: {fileID: 8257364259219993401}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Grid
@@ -2375,3 +2366,15 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 1
+--- !u!114 &8257364259219993401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4671397629175271840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d260014afa3294cbfb8e7ee40aacf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

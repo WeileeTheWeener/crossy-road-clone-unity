@@ -6,9 +6,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovementComponent : MonoBehaviour
 {
-    [SerializeField] private Grid grid;
-    public Vector3Int gridIndex;
-    public UnityEvent onMoveForward;
+    private Grid grid;
+    private Vector3Int gridIndex;
+    [SerializeField] UnityEvent onMoveForward;
     Vector3Int tileLeftOfPlayer;
     Vector3Int tileRightOfPlayer;
     Vector3Int tileBehindThePlayer;
@@ -17,12 +17,15 @@ public class PlayerMovementComponent : MonoBehaviour
     [SerializeField] bool canMoveBack;
     [SerializeField] Vector3 startingPosition;
 
+    public Vector3Int GridIndex { get => gridIndex;}
+
 
     // Start is called before the first frame update
     void Start()
     {
+        grid = GridComponent.GetGrid();
         gridIndex = grid.WorldToCell(gameObject.transform.position);
-        transform.position = grid.CellToWorld(gridIndex);
+        transform.position = grid.CellToWorld(GridIndex);
     }
     // Update is called once per frame
     void Update()
@@ -42,7 +45,7 @@ public class PlayerMovementComponent : MonoBehaviour
             gridIndex.x--;    
         }  
         if (Input.GetKeyUp(KeyCode.W))
-        {           
+        {
             gridIndex.y++;
             onMoveForward.Invoke();
         }
@@ -50,14 +53,14 @@ public class PlayerMovementComponent : MonoBehaviour
         {
             gridIndex.y--;    
         }
-        transform.position = grid.CellToWorld(gridIndex);
+        transform.position = grid.CellToWorld(GridIndex);
 
     }
     void CheckIfICanMove()
     {
-        tileLeftOfPlayer = grid.WorldToCell(grid.CellToWorld(new Vector3Int(gridIndex.x - 1, gridIndex.y, gridIndex.z)));
-        tileRightOfPlayer = grid.WorldToCell(grid.CellToWorld(new Vector3Int(gridIndex.x + 1, gridIndex.y, gridIndex.z)));
-        tileBehindThePlayer = grid.WorldToCell(grid.CellToWorld(new Vector3Int(gridIndex.x, gridIndex.y-1, gridIndex.z)));
+        tileLeftOfPlayer = grid.WorldToCell(grid.CellToWorld(new Vector3Int(GridIndex.x - 1, GridIndex.y, GridIndex.z)));
+        tileRightOfPlayer = grid.WorldToCell(grid.CellToWorld(new Vector3Int(GridIndex.x + 1, GridIndex.y, GridIndex.z)));
+        tileBehindThePlayer = grid.WorldToCell(grid.CellToWorld(new Vector3Int(GridIndex.x, GridIndex.y-1, GridIndex.z)));
 
         Ray rayLeft = new Ray();
         Ray rayRight = new Ray();
@@ -102,6 +105,6 @@ public class PlayerMovementComponent : MonoBehaviour
     public void ResetPlayerPosition()
     {
         gridIndex = grid.WorldToCell(startingPosition);
-        transform.position = grid.CellToWorld(gridIndex);
+        transform.position = grid.CellToWorld(GridIndex);
     }
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CarComponent : MonoBehaviour
 {
-    public Grid grid;
     public GameObject tileManager;
     [SerializeField] private float movementRate;
     [SerializeField] private float timeLeftToMove;
@@ -11,6 +10,7 @@ public class CarComponent : MonoBehaviour
     public Vector3Int gridIndex;
     [SerializeField] Vector3 startWorldPosition;
     public Vector3Int carStartGridPositionOffset;
+
 
     private void OnEnable()
     {
@@ -29,6 +29,8 @@ public class CarComponent : MonoBehaviour
     }
     void Movement()
     {
+        Grid grid = GridComponent.GetGrid();
+
         timeLeftToMove -= Time.deltaTime;
         timeLeftToMove= Mathf.Clamp(timeLeftToMove, 0, movementRate);
 

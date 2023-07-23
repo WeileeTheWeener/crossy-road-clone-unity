@@ -7,7 +7,7 @@ public class TilesetComponent : MonoBehaviour
     [SerializeField] private GameObject lastTile;
     public GameObject cameraDeathZone;
 
-    public Grid grid;
+    private Grid grid;
     public Vector3Int gridIndex;
 
     public int Size { get => size; set => size = value; }
@@ -16,16 +16,10 @@ public class TilesetComponent : MonoBehaviour
 
     private void Start()
     {
-        grid = GameObject.FindWithTag("Grid").GetComponent<Grid>();
-    }
-    private void OnEnable()
-    {
-        grid = GameObject.FindWithTag("Grid").GetComponent<Grid>();
-
+        grid = GridComponent.GetGrid();
     }
     private void Update()
     {
-        //gridIndex = grid.WorldToCell(gameObject.transform.position);
         DisableTileOnOutOfBounds();
     }
     private void DisableTileOnOutOfBounds()

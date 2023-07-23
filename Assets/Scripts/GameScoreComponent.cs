@@ -5,23 +5,27 @@ using UnityEngine;
 public class GameScoreComponent : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    public int playerScore;
-    public int highScore;
-    [SerializeField] Grid grid;
+    private int playerScore;
+    private int highScore;
+    private Grid grid;
     [SerializeField] int playersUpmostTouchedGrid;
     [SerializeField] int playersGrid;
 
+    public int PlayerScore { get => playerScore; set => playerScore = value; }
+    public int HighScore { get => highScore; set => highScore = value; }
+
     private void Start()
     {   
+        grid = GridComponent.GetGrid();
         playerScore = 0;
         playersUpmostTouchedGrid = grid.WorldToCell(player.transform.position).y;
-        highScore = PlayerPrefs.GetInt("playerHighScore");
+        HighScore = PlayerPrefs.GetInt("playerHighScore");
         
     }
     // Update is called once per frame
     void Update()
     {
-        playersGrid = player.GetComponent<PlayerMovementComponent>().gridIndex.y;
+        playersGrid = player.GetComponent<PlayerMovementComponent>().GridIndex.y;
         //UpdateLastTouchedGrid(); 
     }
     public void UpdateGameScore()
@@ -49,9 +53,9 @@ public class GameScoreComponent : MonoBehaviour
     }
     public void UpdateHighScore()
     {
-        if(playerScore > highScore)
+        if(playerScore > HighScore)
         {
-            highScore = playerScore;
+            HighScore = playerScore;
         }
 
     }

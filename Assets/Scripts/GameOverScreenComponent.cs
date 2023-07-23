@@ -11,8 +11,8 @@ public class GameOverScreenComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        gameScoreText.text = string.Format("Score:{0}", gameScoreComponent.playerScore);
-        highScoreText.text = string.Format("High Score:{0}", gameScoreComponent.highScore);
+        gameScoreText.text = string.Format("Score:{0}", gameScoreComponent.PlayerScore);
+        highScoreText.text = string.Format("High Score:{0}", gameScoreComponent.HighScore);
     }
 
 }

@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class CameraComponent : MonoBehaviour
 {
     [SerializeField] private int moveSpeed;
-    [SerializeField] private Grid grid;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject deathZoneObject;
     [SerializeField] private Vector3 deathZoneObjectOffset;
