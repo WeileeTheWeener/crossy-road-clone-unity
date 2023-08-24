@@ -8,19 +8,22 @@ public class GridComponent : MonoBehaviour
     private static GridComponent instance;
     private Grid grid;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
-
-        grid = GetComponent<Grid>(); 
-
+        grid = GetComponent<Grid>();
+    }
+    void Start()
+    {
+        
     }
     public static Grid GetGrid()
     {
         return instance.grid;
     }
+
 
 }
